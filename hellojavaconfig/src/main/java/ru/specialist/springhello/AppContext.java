@@ -17,6 +17,10 @@ public class AppContext {
     public PersonList persons()
     {
         PersonList list = new PersonList();
+        // ниже не вызов метода person, а
+        // запрос контейнера на получение bean в нужной конфигурации,
+        // которая описывается этим методом
+        // контейнер будет решать на основе @Scope сколько раз будет вызван bean
         list.add(person());
         list.add(person());
         list.add(person());
