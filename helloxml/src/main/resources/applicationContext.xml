@@ -3,11 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean class="ru.specialist.hellospringxml.Person" id="myself"
+    <!-- конфигурирование bean -->
+    <bean class="ru.specialist.helloxml.Person" id="myself"
           scope="prototype">
-        <property name="name" value="Sergey"/>
+        <constructor-arg value="Matvey"/>
+        <constructor-arg value="10"/>
+        <!-- Вызов сеттера -->
         <property name="age" value="43"/>
+        <!--
+        <property name="name" value="Sergey"/>
+        -->
     </bean>
 
 </beans>

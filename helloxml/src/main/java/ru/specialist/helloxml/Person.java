@@ -1,4 +1,4 @@
-package ru.specialist.hellospringxml;
+package ru.specialist.helloxml;
 
 public class Person
 {
