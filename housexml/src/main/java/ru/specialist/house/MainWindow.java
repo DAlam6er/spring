@@ -31,12 +31,10 @@ public class MainWindow
 
 	public void destroy() throws Exception {
 		closeConnection();
-		
 	}
 
 	public void afterPropertiesSet() throws Exception {
 		openConnection();
-		
 	}
 
 }

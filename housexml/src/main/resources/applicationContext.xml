@@ -6,14 +6,13 @@
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:util="http://www.springframework.org/schema/util"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/util 
-        http://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/aop 
-   		http://www.springframework.org/schema/aop/spring-aop.xsd 
-        ">
+        	http://www.springframework.org/schema/beans/spring-beans.xsd
+        	http://www.springframework.org/schema/context
+        	http://www.springframework.org/schema/context/spring-context.xsd
+        	http://www.springframework.org/schema/util
+        	http://www.springframework.org/schema/util/spring-util.xsd
+        	http://www.springframework.org/schema/aop
+   			http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="windowBean"
         class="ru.specialist.house.WoodFrameWindow"
@@ -53,7 +52,27 @@
 
 	<bean id="houseBean"
 		class="ru.specialist.house.House"
+		lazy-init="true"
 		>
+		<constructor-arg ref="windowBean"/>
+		<property name="height" value="3"/>
+		<property name="wall" ref="logsBean"/>
+<!--		Альтернативные варианты задания свойств bean-->
+
+	<!--
+		через префикс дополнительной схемы
+		аттрибут совпадает с именем свойства
+		p:height="3"
+		p:wall-ref="logsBean"
+	-->
+	<!--
+		через приватный bean без идентификатора
+		<property name="wall">
+			<bean
+				class="ru.specialist.house.Brick">
+			</bean>
+		</property>
+	-->
 	</bean>
 
 	<!--
@@ -94,14 +113,14 @@
          </property>
 
     </bean>
-	-->
+
     <bean id="mainWindowBean"
     	class="ru.specialist.house.MainWindow"
         init-method="openConnection"
         destroy-method="closeConnection"
     	factory-method="getInstance">
     </bean>
-
+		-->
 	<util:list id="cities">
 		 <bean class="ru.specialist.house.City"
 		 	p:name="Chicago" p:state="IL" p:population="2853114"/>

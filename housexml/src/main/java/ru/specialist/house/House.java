@@ -16,6 +16,7 @@ public class House
 
 	public House(Window window)
 	{
+		System.out.println("House created.");
 		this.window = window;
 	}
 	

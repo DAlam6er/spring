@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="coords"
+          class="ru.home.Coords"
+          scope="prototype"
+          >
+    </bean>
+
+    <bean id="redPoint"
+          class="ru.home.Point"
+        scope="prototype"
+        >
+        <constructor-arg ref="coords"/>
+        <property name="color" value="red"/>
+    </bean>
+
+    <bean id="yellowPoint"
+          class="ru.home.Point"
+          scope="prototype"
+          >
+        <constructor-arg ref="coords"/>
+        <property name="color" value="yellow"/>
+    </bean>
+
+    <bean id="point"
+          class="ru.home.Point"
+          primary="true"
+          >
+        <constructor-arg ref="coords"/>
+    </bean>
+
+    <bean id="unitCircle"
+          class="ru.home.Circle"
+          >
+        <constructor-arg ref="coords"/>
+        <constructor-arg value="1.0"/>
+
+        <property name="x" value="0.0"/>
+        <property name="y" value="0.0"/>
+        <property name="color" value="black"/>
+    </bean>
+
+    <bean id="bigCircle"
+          class="ru.home.Circle"
+          primary="true"
+          >
+        <constructor-arg ref="coords"/>
+        <constructor-arg value="999.0"/>
+
+        <property name="x" value="0.0"/>
+        <property name="y" value="0.0"/>
+        <property name="color" value="red"/>
+    </bean>
+
+</beans>
