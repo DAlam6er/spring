@@ -1,4 +1,4 @@
-package ru.specialist.springhello;
+package ru.specialist.personanno;
 
 import java.util.ArrayList;
 

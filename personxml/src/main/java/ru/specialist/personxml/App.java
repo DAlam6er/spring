@@ -1,4 +1,4 @@
-package ru.specialist.helloxml;
+package ru.specialist.personxml;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

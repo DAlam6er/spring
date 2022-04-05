@@ -1,4 +1,4 @@
-package ru.specialist.springhello;
+package ru.specialist.personanno;
 
 public class PersonBean {
 	private String name;

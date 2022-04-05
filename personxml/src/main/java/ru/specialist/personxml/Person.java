@@ -1,4 +1,4 @@
-package ru.specialist.helloxml;
+package ru.specialist.personxml;
 
 public class Person
 {

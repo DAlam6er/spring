@@ -1,4 +1,4 @@
-package ru.specialist.springhello;
+package ru.specialist.personanno;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
