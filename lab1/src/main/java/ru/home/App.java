@@ -25,13 +25,16 @@ public class App
             new ClassPathXmlApplicationContext(
                     "applicationContext.xml");
 
-        Point point = context.getBean("redPoint", Point.class);
-        Circle circle = context.getBean("unitCircle", Circle.class);
-        //Comparable figure = context.getBean(Comparable.class);
+        Point redPoint = context.getBean("redPoint", Point.class);
+        Circle unitCircle = context.getBean("unitCircle", Circle.class);
+        Circle circle = context.getBean(Circle.class);
+        Point point = context.getBean(Point.class);
+        Comparable figure = context.getBean(Comparable.class);
 
-        //System.out.println(point.getCoords());
-        point.draw();
+        redPoint.draw();
+        unitCircle.draw();
         circle.draw();
-        //System.out.println(figure);
+        point.draw();
+        System.out.println(figure.getClass());
     }
 }

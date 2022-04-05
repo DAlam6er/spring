@@ -8,6 +8,8 @@
           class="ru.home.Coords"
           scope="prototype"
           >
+        <property name="x" value="1.0"/>
+        <property name="y" value="1.0"/>
     </bean>
 
     <bean id="redPoint"
@@ -31,6 +33,8 @@
           primary="true"
           >
         <constructor-arg ref="coords"/>
+        <property name="x" value="0.0"/>
+        <property name="y" value="0.0"/>
     </bean>
 
     <bean id="unitCircle"
@@ -39,8 +43,8 @@
         <constructor-arg ref="coords"/>
         <constructor-arg value="1.0"/>
 
-        <property name="x" value="0.0"/>
-        <property name="y" value="0.0"/>
+        <property name="x" value="-1.0"/>
+        <property name="y" value="-1.0"/>
         <property name="color" value="black"/>
     </bean>
 
@@ -51,8 +55,8 @@
         <constructor-arg ref="coords"/>
         <constructor-arg value="999.0"/>
 
-        <property name="x" value="0.0"/>
-        <property name="y" value="0.0"/>
+        <property name="x" value="2.0"/>
+        <property name="y" value="4.0"/>
         <property name="color" value="red"/>
     </bean>
 

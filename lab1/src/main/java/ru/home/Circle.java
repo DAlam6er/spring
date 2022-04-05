@@ -38,7 +38,7 @@ public class Circle extends Shape implements Comparable<Circle>
 
     public void setY(double y)
     {
-        centCoords.setX(y);
+        centCoords.setY(y);
     }
 
     public double getRad() {
