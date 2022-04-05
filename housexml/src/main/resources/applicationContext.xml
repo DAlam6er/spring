@@ -113,14 +113,14 @@
          </property>
 
     </bean>
-
+-->
     <bean id="mainWindowBean"
     	class="ru.specialist.house.MainWindow"
         init-method="openConnection"
         destroy-method="closeConnection"
     	factory-method="getInstance">
     </bean>
-		-->
+
 	<util:list id="cities">
 		 <bean class="ru.specialist.house.City"
 		 	p:name="Chicago" p:state="IL" p:population="2853114"/>

@@ -1,17 +1,18 @@
 package ru.specialist.house;
 
 // singleton
-// tread safe
+// thread safe
 public class MainWindow 
 //implements InitializingBean, DisposableBean
 {
 	
 	private MainWindow() {}
-	
+
+	// вложенный статический класс
 	private static class MainWindowHolder  {
 		static MainWindow instance = new MainWindow();
 	}
-	
+	// метода для получения единственного объекта Singleton
 	public static MainWindow getInstance() {
 		return MainWindowHolder.instance;
 	}

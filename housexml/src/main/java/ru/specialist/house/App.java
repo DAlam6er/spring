@@ -14,6 +14,7 @@ public class App
 		// зависимости внедряет spring
 		House house = context.getBean("houseBean", House.class);
 		house.buildWall();
+		house.installDoors();
 		house.view();
 
 		context.getBean("windowBean", WoodFrameWindow.class).open();

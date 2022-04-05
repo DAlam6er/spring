@@ -1,14 +1,15 @@
 package ru.specialist.house;
 
+import java.util.List;
 import java.util.Map;
 
 public class House
 {
 	private Window window;
 	//private Collection<Door> doors;
-	//private List<Door> doors;
+	private List<Door> doors;
 	//private Door[] doors;
-	private Map<String,Door> doors;
+	//private Map<String,Door> doors;
 	private Material wall; 
 	private int height; // высота в этажах
 
@@ -35,12 +36,14 @@ public class House
 	
 	public void installDoors()
 	{
-		//for(Door door : doors)
-		//	door.install();
-		for(Map.Entry<String, Door> e : doors.entrySet()) {
+		for(Door door : doors) {
+			door.install();
+		}
+
+		/*for(Map.Entry<String, Door> e : doors.entrySet()) {
 			System.out.printf("Ключ %s. ", e.getKey());
 			e.getValue().install();
-		}
+		}*/
 	}
 
 	public Material getWall()
@@ -73,12 +76,12 @@ public class House
 		this.window = window;
 	}
 
-	public Map<String,Door> getDoors()
+	public List<Door> getDoors()
 	{
 		return doors;
 	}
 
-	public void setDoors(Map<String,Door> doors)
+	public void setDoors(List<Door> doors)
 	{
 		this.doors = doors;
 	}
