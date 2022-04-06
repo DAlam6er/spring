@@ -7,9 +7,9 @@ public class House
 {
 	private Window window;
 	//private Collection<Door> doors;
-	private List<Door> doors;
+	//private List<Door> doors;
 	//private Door[] doors;
-	//private Map<String,Door> doors;
+	private Map<String,Door> doors;
 	private Material wall; 
 	private int height; // высота в этажах
 
@@ -36,14 +36,17 @@ public class House
 	
 	public void installDoors()
 	{
+		// если doors - это List
+		/*
 		for(Door door : doors) {
 			door.install();
 		}
-
-		/*for(Map.Entry<String, Door> e : doors.entrySet()) {
+		*/
+		// если doors - это Map
+		for(Map.Entry<String, Door> e : doors.entrySet()) {
 			System.out.printf("Ключ %s. ", e.getKey());
 			e.getValue().install();
-		}*/
+		}
 	}
 
 	public Material getWall()
@@ -76,12 +79,30 @@ public class House
 		this.window = window;
 	}
 
+	// если doors - это List
+	/*
 	public List<Door> getDoors()
 	{
 		return doors;
 	}
+	*/
 
+	// если doors - это Map
+	public Map<String, Door> getDoors()
+	{
+		return doors;
+	}
+
+	// если doors - это List
+	/*
 	public void setDoors(List<Door> doors)
+	{
+		this.doors = doors;
+	}
+	*/
+
+	// если doors - это Map
+	public void setDoors(Map<String, Door> doors)
 	{
 		this.doors = doors;
 	}

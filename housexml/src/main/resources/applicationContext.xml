@@ -73,6 +73,29 @@
 			</bean>
 		</property>
 	-->
+		<property name="doors">
+<!--		если doors - это Map-->
+<!--
+			<list>
+				<ref bean="outDoor"/>
+				<ref bean="innerDoor"/>
+				<ref bean="innerDoor"/>
+			</list>
+-->
+<!--		если doors - это Map-->
+<!--		как ключ, так и значение можно задавать как
+			key="x" key-ref="bean_id" value="x" value-ref="bean_id" -->
+			<map>
+				<entry key="#{keySelector.key}"
+					   value-ref="outDoor"/>
+				<entry key="#{keySelector.getKey(innerDoor)?.toUpperCase()}"
+					   value-ref="innerDoor"/>
+				<entry key="#{systemEnvironment['JAVA_HOME']}"
+					   value-ref="innerDoor"/>
+				<entry key="#{systemProperties['application.home']}"
+					   value-ref="innerDoor"/>
+			</map>
+		</property>
 	</bean>
 
 	<!--
