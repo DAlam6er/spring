@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import ru.specialist.building.House;
 
 @ComponentScan("ru.specialist.building")
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
@@ -46,7 +46,7 @@ public class App
 						на уровне типа. Аннотация определяется атрибутом expression
 			assignable 	Отыскивает классы, экземпляры которого могут присваиваться
 						свойствам указанного типа. Тип свойств определяется
-						атрибутом expression
+						атрибутом expression - этот тип реализован в классе.
 			aspectj 	Отыскивает классы, тип которых соответствует выражению
 						типа AspectJ, указанному в атрибуте expression
 			custom 		Использует пользовательскую реализацию org.springframework.

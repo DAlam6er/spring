@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 //@Component("logsBean")
 @Component("logs")
-//@Component // name="wood" 
+//@Component // name="wood" если не задан параметр
 public class Wood implements Material{
 	
 	public void cover() {

@@ -45,10 +45,14 @@ public class House{
 	
 	@Autowired
 	//@Autowired(required=false)
-	@WoodQualifier
+	// стены будут из кирпича
+	// связывать с бином с именем "brick"
 	//@Qualifier("brick")
+	// стены будут из дерева
+	//@Value("#{logs}")
 	//@Value("#{wood}")
-	
+	@WoodQualifier
+	// Java EE annotations:
 	//@Inject // javax.inject
 	//@Resource(name="logsBean")
 	//@Named("logs") // javax.inject
@@ -64,6 +68,7 @@ public class House{
 	}
 	
 	//@Autowired
+	// аннотацию можно навесить на параметр конструктора
 	public House(Window window, @Value("4") int height) {
 		System.out.printf("ctor House. window: %s\n", window);
 		this.window = window;

@@ -51,13 +51,20 @@
         >
     </bean>
 
+<!--	Базовая конфигурация-->
+	<bean id="baseHouseBean"
+		  class="ru.specialist.house.House"
+		  p:height="3" abstract="true"
+		  >
+	</bean>
 
+<!--	Наследуемая конфигурация, класс уже не указываем, как и height -->
 	<bean id="houseBean"
-		class="ru.specialist.house.House"
+		parent="baseHouseBean"
 		lazy-init="true"
 		>
 		<constructor-arg ref="windowBean"/>
-		<property name="height" value="3"/>
+<!--	<property name="height" value="3"/>-->
 		<property name="wall" ref="logsBean"/>
 <!--		Альтернативные варианты задания свойств bean-->
 <!--
