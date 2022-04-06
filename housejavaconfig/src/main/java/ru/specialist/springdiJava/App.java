@@ -44,13 +44,14 @@ public class App
 
 		house.buildWall();
 		house.view();
-		
+
 		/*System.out.println(context.getBean("stena", Material.class));
 		System.out.println(context.getBean("stena", Material.class));
 		System.out.println("----");
 		System.out.println(context.getBean("stena", Brick.class));
 		System.out.println(context.getBean("logs", Wood.class));*/
 		//System.out.println(context.getBean(Window.class));
+		context.close();
 		
 		try (AnnotationConfigApplicationContext gContext =
 				new AnnotationConfigApplicationContext(GraphConfig.class))
