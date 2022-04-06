@@ -1,4 +1,4 @@
-package ru.specialist.personanno;
+package ru.specialist.personjavaconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

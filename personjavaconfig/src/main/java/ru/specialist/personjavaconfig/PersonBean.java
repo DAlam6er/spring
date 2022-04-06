@@ -1,4 +1,4 @@
-package ru.specialist.personanno;
+package ru.specialist.personjavaconfig;
 
 public class PersonBean {
 	private String name;

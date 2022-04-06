@@ -1,7 +1,7 @@
 /personxml/.idea
 /personxml/target/
-/personanno/.idea
-/personanno/target/
+/personjavaconfig/.idea
+/personjavaconfig/target/
 /housexml/.idea
 /housexml/target/
 /houseanno/.idea
@@ -10,4 +10,6 @@
 /housejavaconfig/target/
 /lab1/.idea
 /lab1/target/
+/lab2_1/.idea
+/lab2_1/target/
 /Examples

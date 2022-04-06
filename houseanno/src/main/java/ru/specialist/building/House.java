@@ -15,22 +15,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-/*
- * Coords
- *  (x,y)
- *  0 ... 999
- *  
- * Point (myPoint)
- * 	coords
- * 
- * Circle
- * 	centerCoords
- *   R ()
- * 
- * 
- * 
- */
-
 @Component
 //@Scope("prototype")
 //@Lazy
@@ -138,11 +122,4 @@ public class House{
 	public void setDoors(Collection<Door> doors) {
 		this.doors = doors;
 	}*/
-	
-	
-	
-	
-	
-	
-	
 }

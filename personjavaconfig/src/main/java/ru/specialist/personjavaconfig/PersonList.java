@@ -1,4 +1,4 @@
-package ru.specialist.personanno;
+package ru.specialist.personjavaconfig;
 
 import java.util.ArrayList;
 

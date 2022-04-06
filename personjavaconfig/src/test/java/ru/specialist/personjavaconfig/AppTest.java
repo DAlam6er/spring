@@ -1,4 +1,4 @@
-package ru.specialist.personanno;
+package ru.specialist.personjavaconfig;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
