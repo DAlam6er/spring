@@ -26,6 +26,7 @@ public class App
 		// контейнер сам у себя запросит bean, который реализует интерфейс Window
 		context.getBean(Window.class).open();
 		context.getBean(Material.class).cover();
+		context.getBean(Brick.class).cover();
 
 		/*
 		house.buildWall();

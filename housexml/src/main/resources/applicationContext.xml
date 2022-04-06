@@ -16,6 +16,7 @@
 
     <bean id="windowBean"
         class="ru.specialist.house.WoodFrameWindow"
+		lazy-init="true"
 		>
     </bean>
     <bean id="wall"
@@ -50,6 +51,7 @@
         >
     </bean>
 
+
 	<bean id="houseBean"
 		class="ru.specialist.house.House"
 		lazy-init="true"
@@ -58,12 +60,23 @@
 		<property name="height" value="3"/>
 		<property name="wall" ref="logsBean"/>
 <!--		Альтернативные варианты задания свойств bean-->
-
-	<!--
+<!--
 		через префикс дополнительной схемы
-		аттрибут совпадает с именем свойства
-		p:height="3"
-		p:wall-ref="logsBean"
+		аттрибут совпадает с именем свойства -->
+	<!--
+	<bean id="houseBean" class="ru.specialist.house.House"
+		p:height="3" p:wall-ref="wall" lazy-init="true"
+		>
+		<constructor-arg ref="windowBean"/>
+	</bean>
+	-->
+<!--	используя автосвязывание по имени-->
+	<!--
+	<bean id="houseBean" class="ru.specialist.house.House"
+		p:height="3" lazy-init="true" autowire="byName"
+		>
+		<constructor-arg ref="windowBean"/>
+	</bean>
 	-->
 	<!--
 		через приватный bean без идентификатора
@@ -139,6 +152,7 @@
 -->
     <bean id="mainWindowBean"
     	class="ru.specialist.house.MainWindow"
+		lazy-init="true"
         init-method="openConnection"
         destroy-method="closeConnection"
     	factory-method="getInstance">
