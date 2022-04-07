@@ -1,18 +1,26 @@
 package ru.home.builder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Scene
 {
-    private List<Shape> shapes;
+    private final List<Shape> shapes = new ArrayList<>();
 
     public List<Shape> getShapes()
     {
         return shapes;
     }
 
-    public void setShapes(List<Shape> shapes)
+    public void addShape(Shape shape)
     {
-        this.shapes = shapes;
+        shapes.add(shape);
+    }
+
+    public void draw()
+    {
+        for (Shape shape : shapes ) {
+            shape.draw();
+        }
     }
 }

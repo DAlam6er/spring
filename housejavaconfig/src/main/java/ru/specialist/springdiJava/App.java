@@ -15,20 +15,7 @@ import ru.specialist.builder.Wood;
 import ru.specialist.graph.Coords;
 import ru.specialist.graph.Scene;
 
-/* Coords
- * Point
- * Circle
- * 
- * Scene
- * 	List<Shape>
- * 
- *  draw
- * 
- * 
- * 
- */
-
-public class App 
+public class App
 {
     public static void main( String[] args ) throws Exception
     {

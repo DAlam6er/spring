@@ -1,13 +1,20 @@
 package ru.home.builder;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Circle extends Shape implements Comparable<Circle>
 {
     private Coords centCoords;
     private double rad;
 
-    public Circle(Coords centCoords, @Value("#{T(java.lang.Math).random() * 100}") double rad) {
+    public Circle () {}
+
+    public Circle(Coords centCoords,
+                  @Value("#{T(java.lang.Math).random() * 100}") double rad)
+    {
         this.centCoords = centCoords;
         this.rad = rad;
     }
@@ -17,6 +24,7 @@ public class Circle extends Shape implements Comparable<Circle>
         return centCoords;
     }
 
+    @Autowired
     public void setCentCoords(Coords centCoords)
     {
         this.centCoords = centCoords;

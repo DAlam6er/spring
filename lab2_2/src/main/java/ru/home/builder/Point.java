@@ -1,8 +1,14 @@
 package ru.home.builder;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Point extends Shape
 {
     private Coords coords;
+
+    public Point() {}
 
     public Point(Coords coords) {
         super();
@@ -14,6 +20,7 @@ public class Point extends Shape
         return coords;
     }
 
+    @Autowired
     public void setCoords(Coords coords)
     {
         this.coords = coords;
@@ -42,6 +49,7 @@ public class Point extends Shape
     @Override
     public void draw()
     {
-        System.out.printf( "%s point %s\n", this.getColor(), coords.toString());
+        System.out.printf( "%s point %s\n", this.getColor(),
+            coords.toString());
     }
 }
