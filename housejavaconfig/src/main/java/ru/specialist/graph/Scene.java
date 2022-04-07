@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationContextAware;
 public class Scene implements ApplicationContextAware, DisposableBean{
 	
 	private List<Shape> objects;
-
 	public List<Shape> getObjects() {
 		return objects;
 	}
@@ -36,9 +35,9 @@ public class Scene implements ApplicationContextAware, DisposableBean{
 	}
 	
 	@PostConstruct
-	public void onCreate() {
+	public void onCreate()
+	{
 		System.out.printf("Scene on create size: %d\n", getObjects().size());
-		
 	}
 
 	@Override

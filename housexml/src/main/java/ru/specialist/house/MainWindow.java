@@ -1,9 +1,11 @@
 package ru.specialist.house;
 
+import org.springframework.beans.factory.InitializingBean;
+
 // singleton
 // thread safe
 public class MainWindow 
-//implements InitializingBean, DisposableBean
+implements InitializingBean//, DisposableBean
 {
 	
 	private MainWindow() {}
@@ -35,7 +37,8 @@ public class MainWindow
 	}
 
 	public void afterPropertiesSet() throws Exception {
-		openConnection();
+		//openConnection();
+		System.out.printf("%s properties set.\n", this.getClass().getName());
 	}
 
 }

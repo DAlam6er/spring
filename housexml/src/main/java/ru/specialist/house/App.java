@@ -27,6 +27,7 @@ public class App
 		context.getBean(Window.class).open();
 		context.getBean(Material.class).cover();
 		context.getBean(Brick.class).cover();
+		context.getBean("mainWindowBean");
 
 		/*
 		house.buildWall();
