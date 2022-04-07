@@ -2,26 +2,31 @@ package ru.home.building;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component("unitCircle")
-@Lazy
+@Scope("prototype")
 public class Circle extends Shape implements Comparable<Circle>
 {
     private Coords centCoords;
     private double rad;
 
-    public Circle(Coords centCoords, @Value("#{T(java.lang.Math).random() * 100}") double rad) {
+    /*public Circle(
+            Coords centCoords,
+            @Value("#{T(java.lang.Math).random() * 100}") double rad)
+    {
         this.centCoords = centCoords;
         this.rad = rad;
-    }
+    }*/
 
     public Coords getCentCoords()
     {
         return centCoords;
     }
 
+    @Autowired
+    //@Qualifier("coords")
     public void setCentCoords(Coords centCoords)
     {
         this.centCoords = centCoords;
@@ -51,6 +56,13 @@ public class Circle extends Shape implements Comparable<Circle>
         return rad;
     }
 
+    @Override
+    @Value("green")
+    public void setColor(String color) {
+        super.setColor(color);
+    }
+
+    @Value("#{T(java.lang.Math).random() * 100}")
     public void setRad(double rad) {
         this.rad = rad;
     }

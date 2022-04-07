@@ -5,16 +5,18 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("bluePoint")
 @Scope("prototype")
-@Lazy
+//@Lazy
 public class Point extends Shape
 {
     private Coords coords;
 
-    public Point(Coords coords) {
+
+    public Point(Coords coords, @Value("blue") String color) {
         super();
         this.coords = coords;
+        this.setColor(color);
     }
 
     public Coords getCoords()
@@ -50,6 +52,7 @@ public class Point extends Shape
     @Override
     public void draw()
     {
-        System.out.printf( "%s point %s\n", this.getColor(), coords.toString());
+        System.out.printf(
+                "%s point %s\n", this.getColor(), coords.toString());
     }
 }

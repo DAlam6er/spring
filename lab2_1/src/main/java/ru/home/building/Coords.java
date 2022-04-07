@@ -11,7 +11,6 @@ public class Coords
     private double x;
     private double y;
 
-
     public Coords() {}
 
     public double getX()

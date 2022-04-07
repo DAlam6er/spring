@@ -12,7 +12,6 @@ public abstract class Shape
         return color;
     }
 
-    @Value("red")
     public void setColor(String color)
     {
         this.color = color;
