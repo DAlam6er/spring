@@ -37,10 +37,9 @@ public class App {
 			System.out.println(c);
 		}
 
-		//System.out.printf("Курс: %s\n", courseDao.findById(4));
+		int id = 4;
+		System.out.printf("Курс %d:\n%s\n", id, courseDao.findById(id));
 		
 		context.close();
-		
 	}
-
 }

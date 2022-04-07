@@ -26,6 +26,7 @@
 		<!-- Это осведомленный bean, при destroy он закроет соединение
 		Это спринговый DataSource для работы с базой через JDBC
 		-->
+		<!--
         <bean id="webDataSource" 
         	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
@@ -33,38 +34,48 @@
 			<property name="username" value="root" />
 			<property name="password" value="root" />
         </bean>
-	<!--
-     <bean  id="webDataSource"
-         class="org.apache.commons.dbcp.BasicDataSource"
-         destroy-method="close">
-        <property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-     </bean>
-     -->
-
-	<context:property-placeholder
-    location="classpath:jdbc.properties"/>
-
-    	<!-- из артефакта spring-jdbc
-    	Шаблон доступа к данным - обеспечивает почти всю работу
-    	-->
-        <bean id="jdbcTemplate"
-        	class="org.springframework.jdbc.core.JdbcTemplate">
-        	<constructor-arg ref="webDataSource" />
-        </bean>
-
-		<!-- bean для собственой реализации репозитория
-		Эта реализация использует спринговый jdbcTemplate
-		здесь происходит инициализация свойства JdbcTemplate
-		в public class JdbcCourseDAO implements CourseDAO
+	-->
+	<!-- Пул соединений - dbcp2(data base connection pulling)
+	это не спринговая библиотека! Не является осведомлённой
+	Для корректного закрытия соединения надо вызывать close при уничтожении
+	-->
+	<bean id="webDataSource"
+		  class="org.apache.commons.dbcp2.BasicDataSource"
+		  destroy-method="close">
+		<!--
+		<property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
 		-->
-        <bean id="courseDAO"
-        	class="ru.specialist.dao.JdbcCourseDAO"
-			autowire="byType"
-			>
-		<!--<property name="jdbcTemplate" ref="jdbcTemplate"/>-->
-        </bean>
+		<!-- ${jdbc.url} - упрощенный вариант SPeL -->
+		<property name="driverClassName"  value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!--
+	Указываем Spring, чтобы он инициализировал коллекцию Map
+	данными из файла jdbc.properties
+	-->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<!-- из артефакта spring-jdbc
+	Шаблон доступа к данным - обеспечивает почти всю работу
+	-->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="webDataSource" />
+	</bean>
+
+	<!-- bean для собственой реализации репозитория
+	Эта реализация использует спринговый jdbcTemplate
+	здесь происходит инициализация свойства JdbcTemplate
+	в public class JdbcCourseDAO implements CourseDAO
+	-->
+	<bean id="courseDAO"
+		class="ru.specialist.dao.JdbcCourseDAO"
+		autowire="byType"
+		>
+	<!--<property name="jdbcTemplate" ref="jdbcTemplate"/>-->
+	</bean>
 
  </beans>

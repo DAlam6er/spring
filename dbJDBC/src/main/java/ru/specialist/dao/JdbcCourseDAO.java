@@ -14,9 +14,13 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+// Дженерик типизируется классом на который производится отображение - Course
 class CourseRowMapper implements RowMapper<Course>
 {
 	@Override
+	// передаваемый ResultSet уже стоит на нужной строке
+	// класс имеет смысл, если имена properties не совпадают
+	// с именами столбцов таблицы БД
 	public Course mapRow(ResultSet rs, int rowNum) throws SQLException
 	{
 		Course c = new Course();
@@ -64,24 +68,24 @@ public class JdbcCourseDAO implements CourseDAO
 
 	@Override
 	public Course findById(int id) {
-		Course course = getJdbcTemplate().queryForObject(
-			SQL_SELECT_COURSE_BY_ID, new Object[] {id},
-			new CourseRowMapper() );
-		return course;
+		return getJdbcTemplate().queryForObject(
+			SQL_SELECT_COURSE_BY_ID,
+			new CourseRowMapper(),
+			id);
 	}
 
 	@Override
 	public List<Course> findAll() {
-		
-		// manual map rows -> objects
 		// Контейнер Spring уже внедрил зависимости,
 		// имеем готовый JdbcTemplate
 		// queryForList возвращает коллекцию строк
 		// а каждая строка будет представлять собой коллекцию Map
 		// Map - ассоциативная коллекция, где ключ - название колонки
 		// а значение - объект
-
-		/*List<Map<String, Object>> rows = 
+		// manual map rows -> objects
+		// ручное отображение строк на объекты
+		/*
+		List<Map<String, Object>> rows =
 				getJdbcTemplate().queryForList(SQL_SELECT_COURSE);
 
 		// решение задачи получения списка курсов "в лоб"
@@ -93,11 +97,18 @@ public class JdbcCourseDAO implements CourseDAO
 			c.setLength( (int)row.get("length") );
 			c.setDescription( (String)row.get("description") );
 			courses.add(c);
-		}*/
-		
-		List<Course> courses = getJdbcTemplate().query(SQL_SELECT_COURSE,
-				//new CourseRowMapper());
-				new BeanPropertyRowMapper(Course.class));
+		}
+		*/
+
+		// Воспользовались готовым RowMapper'ом
+		// параметр BeanPropertyRowMapper - класс,
+		// к которому надо приводить строки
+		// properties совпадают с именами столбцов
+		//new CourseRowMapper() имел бы смысл, если бы они отличались
+		List<Course> courses = getJdbcTemplate().query(
+			SQL_SELECT_COURSE,
+			//new CourseRowMapper());
+			new BeanPropertyRowMapper(Course.class));
 		return courses;
 	}
 

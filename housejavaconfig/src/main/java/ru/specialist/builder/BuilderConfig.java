@@ -12,11 +12,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableWebMvc // web mvc support
 public class BuilderConfig {
 	
+	// Декларативно указываем где брать url - указываем ключ properties файла
 	//@Value("${jdbc.url}")
 	//private String url;
 	
+	// Императивно(в коде) указываем, используя спринговый сервис Environment
+	// Spring автоматом заинжектит сюда ссылку на этот сервис
+	// Этот сервис предоставляет доступ к окружению
 	//@Autowired
 	//private Environment env;
+	// Читаем значение "jdbc.url"
 	//env.getProperty("jdbc.url")
 
 	@Primary
