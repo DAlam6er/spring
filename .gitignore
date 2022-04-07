@@ -16,6 +16,8 @@
 /lab2_2/target/
 /dbJDBC/.idea
 /dbJDBC/target/
+/dbHibernate/.idea
+/dbHibernate/target/
 /TemplateMethodJava/.idea
 /TemplateMethodJava/*.iml
 /TemplateMethodJava/out/

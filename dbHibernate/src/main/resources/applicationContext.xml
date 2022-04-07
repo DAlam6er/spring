@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd        
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        ">
+    <bean id="webDataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+   <!--
+    сообщаем контексту, что вторая часть конфигурации
+    должна браться из аннотаций
+    Сканируем бины из указанного пакета на предмет аннотаций
+    -->
+    <context:component-scan base-package="ru.specialist.dao"/>
+    <!-- Представление коллекции параметров Hibernate ключ-значение
+    может быть вынесена в отдельный файл .properties
+    -->
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+        <prop key="hibernate.max_fetch_depth">3</prop>
+        <prop key="hibernate.max_fetch_size">50</prop>
+        <prop key="hibernate.max_batch_size">10</prop>
+        <!-- для отладки, вывод sql-запроса в консоль-->
+        <prop key="hibernate.show_sql">true</prop>
+    </util:properties>
+
+    <!--   Спринговый генератор сессий, работающий со спрингом
+    Сообщаем ему
+        jdbc data source. Spring передаст его в Hibernate;
+        пакет с классами сущностей (Course.class)
+        набор параметров самого Hibernate
+    -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+          p:dataSource-ref="webDataSource"
+          p:packagesToScan="ru.specialist.dao"
+          p:hibernateProperties-ref="hibernateProperties"/>
+
+    <!-- Данный bean осуществляет преобразования SQLException в Spring Exceptions-->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <!-- Описание варианта управления транзакциями - декларативно через аннотации-->
+    <tx:annotation-driven />
+    <!-- Hibernate требует поддержки транзакций
+    transactionManager будет управлять транзакциями
+    она требует фабрики сессий
+    "transactionManager" - имя по дефолту!
+    -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory"/>
+</beans>
