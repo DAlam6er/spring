@@ -2,7 +2,7 @@ package ru.specialist.dao;
 
 import java.util.List;
 
-// интерфейс, описывающий репозиторий
+// интерфейс, описывающий функционал репозитория
 public interface CourseDAO {
 	
 	Course findById(int id);

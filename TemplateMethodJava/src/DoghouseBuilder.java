@@ -1,11 +1,12 @@
 
-public class DoghouseBuilder extends HouseBuilder{
-	
-	protected void doBasement() {
-	}
-	protected void doWindows() {
-	}
-	protected void doDoors() {
-	}
+public class DoghouseBuilder extends HouseBuilder
+{
+	@Override
+	protected void doBasement() {}
 
+	@Override
+	protected void doWindows() {}
+
+	@Override
+	protected void doDoors() {}
 }

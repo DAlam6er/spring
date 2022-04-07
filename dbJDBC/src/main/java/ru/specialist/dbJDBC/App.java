@@ -11,6 +11,7 @@ public class App {
 		ClassPathXmlApplicationContext context = 
 				new ClassPathXmlApplicationContext("applicationContext.xml");
 		
+		// Запрашиваем у контейнера Spring нечто, реализующее интерфейс CourseDAO
 		CourseDAO courseDao = context.getBean(CourseDAO.class);
 		
 		/*Course nc = new Course();
@@ -26,15 +27,16 @@ public class App {
 		s.setLength(42);
 		courseDao.update(s);*/
 		
-		courseDao.delete(8);
+		//courseDao.delete(8);
 		
 		
 		//for(Course c : courseDao.findByTitle("web"))
 		//	System.out.println(c);
-		for(Course c : courseDao.findAll())
+
+		for(Course c : courseDao.findAll()) {
 			System.out.println(c);
-		
-		
+		}
+
 		//System.out.printf("Курс: %s\n", courseDao.findById(4));
 		
 		context.close();

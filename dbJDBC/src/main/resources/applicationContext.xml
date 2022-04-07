@@ -12,44 +12,59 @@
         http://www.springframework.org/schema/util/spring-util.xsd
         ">
         <!-- 
-        	DriverManagerDataSource – всегда возвращает новое соединение. 
+        	DriverManagerDataSource –    всегда возвращает новое соединение.
         	SingleConnectionDataSource – всегда возвращает одно и то же соединение. 
          -->
-         
-        <!-- 
+
+		<!--
+		Для mysql v.5.0
+		<property name="driverClassName"  value="com.mysql.jdbc.Driver" />
+		Для mysql v.8.0
+		<property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
+		-->
+
+		<!-- Это осведомленный bean, при destroy он закроет соединение
+		Это спринговый DataSource для работы с базой через JDBC
+		-->
         <bean id="webDataSource" 
         	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName"  value="com.mysql.jdbc.Driver" />
+			<property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
 			<property name="url" value="jdbc:mysql://localhost:3306/web" />
 			<property name="username" value="root" />
-			<property name="password" value="demo" />
+			<property name="password" value="root" />
         </bean>
-        
-         -->
-         <bean  id="webDataSource" 
-         	class="org.apache.commons.dbcp.BasicDataSource"
-         	destroy-method="close">
-			<property name="driverClassName"  value="${jdbc.driverClassName}" />
-			<property name="url" value="${jdbc.url}" />
-			<property name="username" value="${jdbc.username}" />
-			<property name="password" value="${jdbc.password}" />
-         </bean>
-         
+	<!--
+     <bean  id="webDataSource"
+         class="org.apache.commons.dbcp.BasicDataSource"
+         destroy-method="close">
+        <property name="driverClassName"  value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+     </bean>
+     -->
+
 	<context:property-placeholder
-		location="classpath:jdbc.properties"/>
-         
-        
-        
+    location="classpath:jdbc.properties"/>
+
+    	<!-- из артефакта spring-jdbc
+    	Шаблон доступа к данным - обеспечивает почти всю работу
+    	-->
         <bean id="jdbcTemplate"
         	class="org.springframework.jdbc.core.JdbcTemplate">
         	<constructor-arg ref="webDataSource" />
         </bean>
+
+		<!-- bean для собственой реализации репозитория
+		Эта реализация использует спринговый jdbcTemplate
+		здесь происходит инициализация свойства JdbcTemplate
+		в public class JdbcCourseDAO implements CourseDAO
+		-->
         <bean id="courseDAO"
-        	class="ru.specialist.dao.JdbcCourseDAO">
-        	<property name="jdbcTemplate" ref="jdbcTemplate"/>
+        	class="ru.specialist.dao.JdbcCourseDAO"
+			autowire="byType"
+			>
+		<!--<property name="jdbcTemplate" ref="jdbcTemplate"/>-->
         </bean>
-        
-        
-        
-        
+
  </beans>

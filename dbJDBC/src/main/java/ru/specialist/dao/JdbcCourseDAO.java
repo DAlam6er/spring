@@ -14,10 +14,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-class CourseRowMapper implements RowMapper<Course> {
-
+class CourseRowMapper implements RowMapper<Course>
+{
 	@Override
-	public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Course mapRow(ResultSet rs, int rowNum) throws SQLException
+	{
 		Course c = new Course();
 		c.setId( rs.getInt("id") );
 		c.setTitle( rs.getString("title") );
@@ -27,9 +28,11 @@ class CourseRowMapper implements RowMapper<Course> {
 	}
 }
 
-public class JdbcCourseDAO implements CourseDAO {
-	
-	private static final String SQL_SELECT_COURSE = 
+// реализация функционала репозитория с использованием JdbcTemplate
+public class JdbcCourseDAO implements CourseDAO
+{
+	// psfs в IDEA
+	private static final String SQL_SELECT_COURSE =
 			"SELECT id, title, length, description FROM courses";
 	
 	private static final String SQL_SELECT_COURSE_BY_ID = 
@@ -47,13 +50,14 @@ public class JdbcCourseDAO implements CourseDAO {
 	private static final String SQL_UPDATE_COURSE =
 			 "UPDATE courses SET title = ?, length = ?, description = ? WHERE id = ?";
 	
-		
+	// spring-jdbc артефакт
 	private JdbcTemplate jdbcTemplate;
 	
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
 
+	// property JdbcTemplate
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -70,8 +74,17 @@ public class JdbcCourseDAO implements CourseDAO {
 	public List<Course> findAll() {
 		
 		// manual map rows -> objects
+		// Контейнер Spring уже внедрил зависимости,
+		// имеем готовый JdbcTemplate
+		// queryForList возвращает коллекцию строк
+		// а каждая строка будет представлять собой коллекцию Map
+		// Map - ассоциативная коллекция, где ключ - название колонки
+		// а значение - объект
+
 		/*List<Map<String, Object>> rows = 
 				getJdbcTemplate().queryForList(SQL_SELECT_COURSE);
+
+		// решение задачи получения списка курсов "в лоб"
 		List<Course> courses = new ArrayList<Course>();
 		for(Map<String, Object>row : rows) {
 			Course c = new Course();
