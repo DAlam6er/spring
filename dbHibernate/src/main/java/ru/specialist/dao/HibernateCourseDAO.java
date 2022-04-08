@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.query.Query;
 import org.hibernate.SessionFactory;
 
 @Transactional
@@ -52,6 +51,9 @@ public class HibernateCourseDAO implements CourseDAO
     public List<Course> findAll()
     {
         // depricated since Hibernate 5
+        // устанавливаем соединение с ОБЪЕКТНОЙ БД
+        // метод .list() выполняет SQL запрос,
+        // на основе полученных данных возвращает сформированную коллекцию данных
         return getSessionFactory().getCurrentSession().
             createQuery("from Course c").list(); // HQL
     }
@@ -60,9 +62,12 @@ public class HibernateCourseDAO implements CourseDAO
     public List<Course> findByName(String title)
     {
         // depricated since Hibernate 5
+        // рассматривать x как переменную в цикле foreach
+        // :search - именованный параметр. Имя любое
+        //.setParameter("имяПараметра", "значениеПараметра")
         return getSessionFactory().getCurrentSession().
             createQuery("from Course x where x.title LIKE :search")
-            .setParameter("search", "%"+title.trim()+"%")
+            .setParameter("search", "%" + title.trim() + "%")
             .list(); // HQL
     }
 
@@ -70,7 +75,10 @@ public class HibernateCourseDAO implements CourseDAO
     public void insert(Course course)
     {
         // depricated since Hibernate 6
+        // свойство id будет автоматом обновлено за счет
+        // наличия аннотации @GeneratedValue
         getSessionFactory().getCurrentSession().save(course);
+        // Вывод информации в лог
         LOG.info("Course saved with id: " + course.getId());
     }
 
@@ -85,8 +93,9 @@ public class HibernateCourseDAO implements CourseDAO
     @Override
     public void delete(int id)
     {
-        Course c = new Course();
+        Course c = new Course(); // фейковый объект курса
         c.setId(id);
+        // удаляет через объект, через id нельзя, поэтому был создан c
         // depricated since Hibernate 6
         getSessionFactory().getCurrentSession().delete(c);
         LOG.info("Course deleted with id: " + c.getId());

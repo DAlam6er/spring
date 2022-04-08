@@ -18,6 +18,8 @@
 /dbJDBC/target/
 /dbHibernate/.idea
 /dbHibernate/target/
+/dbJPA/.idea
+/dbJPA/target/
 /TemplateMethodJava/.idea
 /TemplateMethodJava/*.iml
 /TemplateMethodJava/out/
