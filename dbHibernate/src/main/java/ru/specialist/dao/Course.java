@@ -53,7 +53,7 @@ public class Course implements Serializable
     @Override
     public String toString()
     {
-        return String.format("%-3d %-50s %4d",
+        return String.format("%-3d %-50s %-4d",
             getId(), getTitle(), getLength());
     }
 }

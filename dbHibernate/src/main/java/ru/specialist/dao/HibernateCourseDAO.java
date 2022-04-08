@@ -21,6 +21,7 @@ public class HibernateCourseDAO implements CourseDAO
     private static final Log LOG = LogFactory.getLog(HibernateCourseDAO.class);
     // данная реализация репозитория жёстко привязана к ORM Hibernate
     // из-за SessionFactory
+
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
@@ -30,9 +31,10 @@ public class HibernateCourseDAO implements CourseDAO
     // инжектим property sessionFactory, связывая его с одноименным bean,
     // сконфигурированным в XML
     // @Resource - аннотация из javax.annotation
-    @Resource(name="sessionFactory")
-    //@Autowired
+
+    @Autowired
     //@Value("#{'sessionFactory'}")
+    //@Resource(name="sessionFactory") // разобраться почему не работает
     public void setSessionFactory(SessionFactory sessionFactory)
     {
         this.sessionFactory = sessionFactory;

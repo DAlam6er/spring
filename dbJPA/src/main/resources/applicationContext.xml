@@ -16,7 +16,7 @@
         ">
  
 	<bean id="webDataSource"
-			class="org.apache.commons.dbcp.BasicDataSource"
+			class="org.apache.commons.dbcp2.BasicDataSource"
 			destroy-method="close"
 			p:driverClassName="${jdbc.driverClassName}"
 			p:url="${jdbc.url}"
@@ -26,34 +26,45 @@
 		location="classpath:jdbc.properties"/>
 
 	<util:properties id="hibernateProperties">
-		<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 		<prop key="hibernate.max_fetch_depth">3</prop>
 		<prop key="hibernate.max_fetch_size">50</prop>
 		<prop key="hibernate.max_batch_size">10</prop>
 		<prop key="hibernate.show_sql">false</prop>
 	</util:properties>
 
+	<!-- Вместо SessionFactory
+	самый главный bean
+	Фабрика управляется на уровне контейнера (более простой вариант)
+	.LocalContainerEntityManagerFactoryBean
+	#########################################
+	При смене ORM, необходимо
+		поменять адаптер
+		ссылку на коллекцию свойств параметров для реализации JPA
+	-->
 	<bean id="emf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="webDataSource" />
 		<property name="jpaVendorAdapter">
+		<!-- Определен как приватный bean-->
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 		</property>
-		<property name="packagesToScan" value="ru.specialist.DAO"/> 
+		<!-- Где искать классы сущностей-->
+		<property name="packagesToScan" value="ru.specialist.dao"/>
+		<!-- Коллекция свойств параметров для реализации JPA-->
 		<property name="jpaProperties" ref="hibernateProperties"/>
 	</bean> 
 	
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-	
-	
+
+	<!--emf - Entity Manager Factory-->
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf"/>
 	</bean>
-	
-	
+
+	<!-- Управление транзакциями будет осуществляться аннотациями-->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
+	<!-- Часть конфигурации будет в аннотациях -->
 	<context:component-scan base-package="ru.specialist.dao"/>
-		 
 </beans>
