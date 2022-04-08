@@ -5,11 +5,12 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+// класс-сущность
 @Entity
 @Table(name = "accounts")
 @IdClass(AccountId.class)
 public class Account {
-	
+	// Составной ключ "номер счета-тип"
 	@Id
 	private String accountNumber;
 	

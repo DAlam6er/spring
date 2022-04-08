@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 // complex primary key
-
+// описывает структуру составного ключа для Crud-репозитория
 public class AccountId implements Serializable {
 	private String accountNumber;
 	private String accountType;
@@ -32,7 +32,4 @@ public class AccountId implements Serializable {
 	public int hashCode() {
 		return Objects.hash( accountNumber, accountType);
 	}
-	
-	
-	
 }

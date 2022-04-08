@@ -8,8 +8,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 // <Course, Integer> - сама сущность JPA и тип первичного ключа
-public interface CourseRepository extends CrudRepository<Course, Integer> {
+public interface CourseRepository extends CrudRepository<Course, Integer>
+{
 	List<Course> findAll();
+	// https://www.baeldung.com/spring-data-derived-queries
+	// можно при условии задания имени метода в соответствии со Spring
+	// даже не писать @Query !
 	@Query("SELECT c FROM Course c WHERE c.title LIKE :search") // JPQL
 	List<Course> findByTitle(@Param("search") String search);
 

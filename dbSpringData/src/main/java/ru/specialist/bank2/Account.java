@@ -4,10 +4,12 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+// класс-сущность
 @Entity
 @Table(name = "accounts")
 public class Account {
 	
+	// преимущество - не надо дважды описывать ключ
 	@EmbeddedId
 	private AccountId accountID;
 	

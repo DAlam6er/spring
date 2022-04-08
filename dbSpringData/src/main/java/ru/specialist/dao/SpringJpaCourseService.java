@@ -16,7 +16,8 @@ public class SpringJpaCourseService implements CourseService {
 	
 	@Autowired
 	private CourseRepository courseRepository;
-	
+
+	@Override
 	public CourseRepository getCourseRepository() {
 		return courseRepository;
 	}
@@ -26,17 +27,18 @@ public class SpringJpaCourseService implements CourseService {
 		getCourseRepository().incrementLength(oldLength, newLength);
 	}
 
+	@Override
 	public List<Course> findAll() {
 		return courseRepository.findAll();
 	}
 
+	@Override
 	public Course save(Course c) {
 		return courseRepository.save(c);
 	}
 
 	@Override
 	public List<Course> findByTitle(String search) {
-		return getCourseRepository().findByTitle("%"+search.trim()+"%");
+		return getCourseRepository().findByTitle("%" + search.trim() + "%");
 	}
-
 }

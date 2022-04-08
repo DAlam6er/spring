@@ -6,8 +6,8 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 // complex primary key
-
-@Embeddable
+// описание структуры сложного составного ключа
+@Embeddable // теперь структуры можно встраивать непосредственно в классы-сущности
 public class AccountId implements Serializable {
 	private String accountNumber;
 	private String accountType;
@@ -18,9 +18,7 @@ public class AccountId implements Serializable {
 		this.accountNumber = accountNumber;
 		this.accountType = accountType;
 	}
-	
-	
-	
+
 	public String getAccountNumber() {
 		return accountNumber;
 	}
