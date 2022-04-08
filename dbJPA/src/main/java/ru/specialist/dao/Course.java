@@ -54,7 +54,4 @@ public class Course implements Serializable {
         return String.format("%-3d %-50s %-4d",
                 getId(), getTitle(), getLength());
     }
-
-
-
 }

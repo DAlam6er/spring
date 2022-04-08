@@ -100,8 +100,9 @@ public class JPACourseDAO implements CourseDAO {
     @Override
     public List<Course> findByTitle(String title) {
         return
-                em.createQuery("select c from Course c where c.title LIKE :title", Course.class)
-                        .setParameter("title", "%"+title.trim()+"%")
+                em.createQuery(
+                        "select c from Course c where c.title LIKE :title",
+                        Course.class)
+                        .setParameter("title", "%" + title.trim() + "%")
                         .getResultList();
-
     }}

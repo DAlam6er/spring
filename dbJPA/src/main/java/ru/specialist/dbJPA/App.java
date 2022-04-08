@@ -14,18 +14,19 @@ public class App
 
         CourseDAO courseDao = context.getBean(CourseDAO.class);
 		
-		/*Course spring = new Course();
+		/*
+		Course spring = new Course();
 		spring.setTitle("Spring");
 		spring.setLength(40);
 		spring.setDescription("Spring framework");
-		courseDao.insert(spring);*/
-        /*courseDao.delete(9);*/
+		courseDao.insert(spring);
+		*/
+        //courseDao.delete(9);
         //Course s = courseDao.findById(111);
         //s.setLength(36);
         //courseDao.update(s);
 
         for(Course c : courseDao.findByTitle("web")) {
-            //for(Course c : courseDao.findAll())
             System.out.println(c);
         }
         System.out.println("----------------");

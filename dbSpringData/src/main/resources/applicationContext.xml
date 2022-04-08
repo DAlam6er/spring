@@ -3,6 +3,7 @@
         xmlns:p="http://www.springframework.org/schema/p"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
         xmlns:util="http://www.springframework.org/schema/util"
         xmlns:tx="http://www.springframework.org/schema/tx"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -13,7 +14,9 @@
         http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd 
-        ">
+		http://www.springframework.org/schema/data/jpa
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		">
 
     <bean id="webDataSource"
           class="org.apache.commons.dbcp2.BasicDataSource"
@@ -33,38 +36,25 @@
         <prop key="hibernate.show_sql">false</prop>
     </util:properties>
 
-    <!-- Вместо SessionFactory
-    самый главный bean
-    Фабрика управляется на уровне контейнера (более простой вариант)
-    .LocalContainerEntityManagerFactoryBean
-    #########################################
-    При смене ORM, необходимо
-        поменять адаптер
-        ссылку на коллекцию свойств параметров для реализации JPA
-    -->
     <bean id="emf"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="webDataSource" />
         <property name="jpaVendorAdapter">
-            <!-- Определен как приватный bean-->
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <!-- Где искать классы сущностей-->
         <property name="packagesToScan" value="ru.specialist.dao"/>
-        <!-- Коллекция свойств параметров для реализации JPA-->
         <property name="jpaProperties" ref="hibernateProperties"/>
     </bean>
-
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-
-    <!--emf - Entity Manager Factory-->
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emf"/>
     </bean>
-
-    <!-- Управление транзакциями будет осуществляться аннотациями-->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-    <!-- Часть конфигурации будет в аннотациях -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
     <context:component-scan base-package="ru.specialist.dao"/>
+    <!-- Где искать интерфейсы репозиториев,
+    для которых spring-data-jpa будет делать реализации -->
+    <jpa:repositories
+            base-package="ru.specialist.dao"
+            entity-manager-factory-ref="emf"
+            transaction-manager-ref="transactionManager"/>
 </beans>
