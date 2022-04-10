@@ -29,12 +29,12 @@ public class SpringJpaCourseService implements CourseService {
 
     @Override
     public List<Course> findAll() {
-        return courseRepository.findAll();
+        return getCourseRepository().findAll();
     }
 
     @Override
     public Course save(Course c) {
-        return courseRepository.save(c);
+        return getCourseRepository().save(c);
     }
 
     @Override
