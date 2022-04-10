@@ -13,32 +13,32 @@ import org.springframework.transaction.annotation.Transactional;
 // Business logic implementation
 @Service("courseService")
 public class SpringJpaCourseService implements CourseService {
-	
-	@Autowired
-	private CourseRepository courseRepository;
 
-	@Override
-	public CourseRepository getCourseRepository() {
-		return courseRepository;
-	}
-	
-	@Override
-	public void updateLength(int oldLength, int newLength) {
-		getCourseRepository().incrementLength(oldLength, newLength);
-	}
+    @Autowired
+    private CourseRepository courseRepository;
 
-	@Override
-	public List<Course> findAll() {
-		return courseRepository.findAll();
-	}
+    @Override
+    public CourseRepository getCourseRepository() {
+        return courseRepository;
+    }
 
-	@Override
-	public Course save(Course c) {
-		return courseRepository.save(c);
-	}
+    @Override
+    public void updateLength(int oldLength, int newLength) {
+        getCourseRepository().incrementLength(oldLength, newLength);
+    }
 
-	@Override
-	public List<Course> findByTitle(String search) {
-		return getCourseRepository().findByTitle("%" + search.trim() + "%");
-	}
+    @Override
+    public List<Course> findAll() {
+        return courseRepository.findAll();
+    }
+
+    @Override
+    public Course save(Course c) {
+        return courseRepository.save(c);
+    }
+
+    @Override
+    public List<Course> findByTitle(String search) {
+        return getCourseRepository().findByTitle("%" + search.trim() + "%");
+    }
 }

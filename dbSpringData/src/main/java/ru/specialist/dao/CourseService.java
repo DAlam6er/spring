@@ -4,13 +4,13 @@ import java.util.List;
 
 // Business logic declaration
 public interface CourseService {
-	CourseRepository getCourseRepository();
-	List<Course> findAll();
-	
-	List<Course> findByTitle(String search);
-	Course save(Course course);
-	
-	void updateLength(int oldLength, int newLength);
+    CourseRepository getCourseRepository();
+    List<Course> findAll();
+
+    List<Course> findByTitle(String search);
+    Course save(Course course);
+
+    void updateLength(int oldLength, int newLength);
 	
 	/*
 	void insert(Course course);

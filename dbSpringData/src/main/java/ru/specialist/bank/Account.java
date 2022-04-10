@@ -10,48 +10,48 @@ import javax.persistence.Table;
 @Table(name = "accounts")
 @IdClass(AccountId.class)
 public class Account {
-	// Составной ключ "номер счета-тип"
-	@Id
-	private String accountNumber;
-	
-	@Id
-	private String accountType;
-	
-	private double balance;
-	
-	public Account() {}
-	
-	public Account(String accountNumber, String accoutType, double balance) {
-		super();
-		this.accountNumber = accountNumber;
-		this.accountType = accoutType;
-		this.balance = balance;
-	}
+    // Составной ключ "номер счета-тип"
+    @Id
+    private String accountNumber;
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
+    @Id
+    private String accountType;
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    private double balance;
 
-	public String getAccoutType() {
-		return accountType;
-	}
+    public Account() {}
 
-	public void setAccoutType(String accoutType) {
-		this.accountType = accoutType;
-	}
+    public Account(String accountNumber, String accoutType, double balance) {
+        super();
+        this.accountNumber = accountNumber;
+        this.accountType = accoutType;
+        this.balance = balance;
+    }
 
-	public double getBalance() {
-		return balance;
-	}
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
-	
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getAccoutType() {
+        return accountType;
+    }
+
+    public void setAccoutType(String accoutType) {
+        this.accountType = accoutType;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+
 
 }

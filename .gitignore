@@ -24,6 +24,8 @@
 /dbSpringData/target/
 /webTest/.idea
 /webTest/target/
+/WebMVC/.idea
+/WebMVC/target/
 /TemplateMethodJava/.idea
 /TemplateMethodJava/*.iml
 /TemplateMethodJava/out/
