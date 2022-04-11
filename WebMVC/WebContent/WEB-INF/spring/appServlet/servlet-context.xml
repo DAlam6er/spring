@@ -60,16 +60,20 @@
 	<s:global-method-security pre-post-annotations="enabled"/>
 
     <!-- Локализация-->
+    <!-- interceptors - бины, участвующие в цепочке запросов-->
 	<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*" />
+            <!-- Читает язык, который надо принудительно включить
+            из параметра запроса lang="ru_RU"-->
             <bean id="localeChangeInterceptor"
                   class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
                 <property name="paramName" value="lang" />
             </bean>
         </mvc:interceptor>
     </mvc:interceptors>
- 
+
+    <!-- Сохраняет выбранный пользователем язык в cookies-->
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="ru_RU" />

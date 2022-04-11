@@ -65,7 +65,6 @@ public class HelloController {
         }
         */
         this.userVM.setUserName(userVM.getUserName());
-        System.out.println(userVM.getUserName());
 
         // добавляем в uiModel ссылку, полученную от пользователя
         uiModel.addAttribute("user", this.userVM);

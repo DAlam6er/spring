@@ -22,8 +22,10 @@
     <!--Описание конфигурации локализации-->
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- Начало пути хранения .properties-->
         <property name="basenames" value="/WEB-INF/i18n/messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
+        <!-- Принудительное использование SystemLocale=false-->
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
 

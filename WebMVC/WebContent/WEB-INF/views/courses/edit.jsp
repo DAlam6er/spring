@@ -39,6 +39,10 @@
         и сохранить обновленную информацию
         --%>
         <form method="POST">
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"
+            />
             <fieldset>
                 <%-- Имена элементов управления были выбраны совпадающими--%>
                 <%-- со свойствами Course--%>

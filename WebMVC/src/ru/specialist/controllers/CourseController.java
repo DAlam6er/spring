@@ -77,6 +77,7 @@ public class CourseController
         return "courses/edit";
     }
 
+    // Action для добавления нового курса
     @RequestMapping(value = "update/0",method = RequestMethod.GET)
     public String newForm( Model uiModel) {
         return "courses/edit";

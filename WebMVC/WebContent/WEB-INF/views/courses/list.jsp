@@ -62,10 +62,9 @@
                 </c:forEach>
             </table>
         </c:if>
-            <%--
-            <s:authorize access="hasRole('ROLE_USER')">
-                <a href="update/0">Добавить...</a>
-            </s:authorize>
-            --%>
-    </body>
+        <%--<s:authorize access="hasRole('ROLE_USER')">--%>
+        <a href="update/0">Добавить...</a>
+        <%--</s:authorize>--%>
+
+</body>
 </html>

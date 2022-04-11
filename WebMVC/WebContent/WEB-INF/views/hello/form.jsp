@@ -27,6 +27,10 @@
         <%-- метод, которым будет отправлен запрос после нажатия кнопки submit--%>
         <%-- адрес, по которому осуществляется отправка, указана в action--%>
         <form method="POST" action="hello">
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"
+            />
             <fieldset>
                 <div>
                     <label>Ваше имя: </label>
