@@ -25,7 +25,7 @@ public class HelloController {
         return userVM;
     }
 
-    // связываем контроллер с моделью.
+    // связываем контроллер с моделью userVM.
     // за создание и инициализацию модели отвечает контейнер Spring
     @Autowired
     public void setUserVM(UserVM userVM)

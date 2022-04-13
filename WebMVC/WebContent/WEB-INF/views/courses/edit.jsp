@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Курс</title>
+        <title><spring:message code="header_course"/> </title>
         <style>
             form fieldset {
                 width : 40%;
@@ -29,6 +29,7 @@
     </head>
     <body>
         <h1><spring:message code="header_course"/></h1>
+
         <c:if test="${not empty error}">
             <h2 class="error">${error}</h2>
         </c:if>
@@ -39,10 +40,6 @@
         и сохранить обновленную информацию
         --%>
         <form method="POST">
-            <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}"
-            />
             <fieldset>
                 <%-- Имена элементов управления были выбраны совпадающими--%>
                 <%-- со свойствами Course--%>
@@ -71,6 +68,9 @@
                 <div>
                     <%--<s:authorize access="hasRole('ROLE_USER')">--%>
                     <input type="submit" value="Сохранить">
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}" />
                     <%--</s:authorize>--%>
                 </div>
             </fieldset>

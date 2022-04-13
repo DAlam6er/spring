@@ -104,7 +104,7 @@ public class UserVM {
         // Локализация, default locale указана в bean id="localeResolver"
         // header_hello - ключ. По ключу получаем строку
 
-        Locale.setDefault(new Locale("ru", "RU"));
+        Locale.setDefault(new Locale("en", "US"));
         String emptyWelcome = getWelcomeByLocale(
             "header_welcome",
             null, Locale.getDefault());

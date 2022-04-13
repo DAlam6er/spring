@@ -56,7 +56,10 @@
 	<mvc:annotation-driven validator="validator"/>
 	-->
 
-	<!-- контроль действий контроллеров -->
+	<!-- контроль действий контроллеров
+	Включение авторизации на основе аннотаций, которые будут навешаны
+	на actions контроллеров
+	-->
 	<s:global-method-security pre-post-annotations="enabled"/>
 
     <!-- Локализация-->

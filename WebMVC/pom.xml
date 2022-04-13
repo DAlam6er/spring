@@ -163,6 +163,9 @@
             <version>31.1-jre</version>
         </dependency>
 
+        <!-- Ядро безопасности Spring содержит функции проверки подлинности
+        и контроля доступа
+        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -170,6 +173,10 @@
             <version>5.6.2</version>
         </dependency>
 
+        <!-- Для аутентификации в web-приложениях (логин-пароль)-->
+        <!-- Содержит фильтры и связанную с ними веб-инфраструктуру безопасности,
+        которая позволяет управлять URL-адресом в среде Servlet
+        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -177,6 +184,8 @@
             <version>5.6.2</version>
         </dependency>
 
+        <!-- Для конфигурирования бинов
+        Использование богатого пространства имен XML Spring Security и аннотаций-->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -184,7 +193,9 @@
             <version>5.6.2</version>
         </dependency>
 
-        <!-- Для работы с безопасностью на представлении (JSP) -->
+        <!-- Для работы с безопасностью на представлении (JSP)
+        в зависимости от того, аутентифицирован пользователь или нет
+        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
         <dependency>
             <groupId>org.springframework.security</groupId>

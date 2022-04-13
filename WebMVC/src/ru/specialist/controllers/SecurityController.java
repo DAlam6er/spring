@@ -12,8 +12,9 @@ import ru.specialist.model.RegFormVM;
 
 @Controller
 @RequestMapping("/security")
-public class SecurityController {
-
+public class SecurityController
+{
+    /*
     private UserRepository userRepository;
 
     @Autowired
@@ -21,14 +22,18 @@ public class SecurityController {
     {
         this.userRepository= userRepository;
     }
-
-    @RequestMapping("/loginfail")
+    */
+    @RequestMapping("/loginfail") // security/loginfail
     public String loginFail(Model uiModel)
     {
+        System.out.printf("login: %s, password: %s\n",
+            uiModel.getAttribute("username"),
+            uiModel.getAttribute("password"));
         System.out.println("login failed");
         return "courses/list";
     }
 
+    /*
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String regForm(Model uiModel)
     {
@@ -48,4 +53,5 @@ public class SecurityController {
         userRepository.save(new User(r.getUsername(), r.getPassword()));
         return "redirect:/courses/";
     }
+     */
 }

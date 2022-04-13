@@ -100,7 +100,10 @@ public class CourseController
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("course", course);
             uiModel.addAttribute("error", "Invalid data");
-            return "courses/update";
+            System.out.printf("Произошла ошибка связывания: %s %s\n",
+                uiModel.getAttribute("course"),
+                uiModel.getAttribute("error"));
+            return "courses/edit";
         }
         courseService.save(course);
         return "redirect:/courses/";

@@ -3,35 +3,60 @@
        xmlns:s="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/security
-    http://www.springframework.org/schema/security/spring-security.xsd">
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <!-- Аутентификация
+    определяем, какие страницы будут доступны
+    permitAll - ко всем страницам доступ есть.
+    Разграничение доступа не на уровне страниц,
+    а на уровне actions и отдельных частей страниц
+    -->
     <s:http use-expressions="true">
         <s:intercept-url pattern="/*" access="permitAll"/>
+        <!--
+        login-page - cтраница, где располагается форма
+        authentication-failure-url="/security/loginfail"
+        - куда переадресоваться, если аутентификация была неуспешна
+        default-target-url - страница по умолчанию после успешного логина
+        -->
         <s:form-login login-page="/courses/"
-                      authentication-failure-url="/security/loginfail"
-                      default-target-url="/courses/"/>
-        <s:logout logout-success-url="/courses/"/>
+                      default-target-url="/courses/"
+                      authentication-failure-url="/courses/" />
+        <!-- Куда переадресоваться в случае выхода из системы-->
+        <s:logout logout-success-url="/courses/"
+                  logout-url="/logout"
+                  delete-cookies="JSESSIONID"/>
     </s:http>
 
+    <!-- Сущность, которая будет аутентифицировать пользователя-->
     <s:authentication-manager>
-        <s:authentication-provider user-service-ref="MyUserDetailService">
-
-    <!--
-    <s:user-service>
-    <s:user name="user" password="1234" authorities="ROLE_USER"/>
-    <s:user name="user2" password="1234" authorities="ROLE_GUEST"/>
-    </s:user-service>
-    <s:jdbc-user-service data-source-ref="webDataSource"
-    users-by-username-query=" select username, password, enabled
-        from users where username = ?"
-    authorities-by-username-query="select username,
-        rolename AS authority from
-        users  INNER JOIN roles ON  users.role_id = roles.id
-    "/>
-    <s:password-encoder hash="sha"/>
-    -->
+        <!-- Вариант провайдера с хранением логина и пароля в памяти-->
+        <s:authentication-provider>
+            <!-- Role-base security:
+            1 пользователь может входить в несколько ролей
+            в 1 роль может входить несколько пользователей
+            -->
+            <s:user-service>
+                <s:user name="user" password="{noop}1234" authorities="ROLE_USER"/>
+                <s:user name="user2" password="{noop}1234" authorities="ROLE_GUEST"/>
+            </s:user-service>
         </s:authentication-provider>
+        <!--<s:authentication-provider user-service-ref="MyUserDetailService">-->
+        <!--
+            <s:user-service>
+            <s:user name="user" password="1234" authorities="ROLE_USER"/>
+            <s:user name="user2" password="1234" authorities="ROLE_GUEST"/>
+            </s:user-service>
+            <s:jdbc-user-service data-source-ref="webDataSource"
+            users-by-username-query=" select username, password, enabled
+                from users where username = ?"
+            authorities-by-username-query="select username,
+                rolename AS authority from
+                users  INNER JOIN roles ON  users.role_id = roles.id
+            "/>
+            <s:password-encoder hash="sha"/>
+        -->
     </s:authentication-manager>
 </beans>

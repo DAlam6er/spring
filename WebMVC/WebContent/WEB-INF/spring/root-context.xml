@@ -28,6 +28,4 @@
         <!-- Принудительное использование SystemLocale=false-->
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
-
-
 </beans>
